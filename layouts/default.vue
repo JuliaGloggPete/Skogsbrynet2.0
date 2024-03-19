@@ -10,6 +10,11 @@
           <li><NuxtLink to="/blogs">Blog</NuxtLink></li>
           <li><NuxtLink to="/events">Events</NuxtLink></li>
           <li><NuxtLink to="/about">Om</NuxtLink></li>
+          <li>
+            <NuxtLink to="/shoppingcard.vue"
+              ><i class="material-icons mr-2">shopping_cart</i>
+            </NuxtLink>
+          </li>
         </ul>
       </nav>
     </header>
