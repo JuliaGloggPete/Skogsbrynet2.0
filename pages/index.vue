@@ -15,6 +15,16 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
+  apiKey: process.env.API_KEY,
+  authDomain: "skogbrynets-verkstad.firebaseapp.com",
+  projectId: "skogbrynets-verkstad",
+  storageBucket: "skogbrynets-verkstad.appspot.com",
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: "G-ZVPCD01LNG",
+};
+
+/*const firebaseConfig = {
   apiKey: "AIzaSyDR9MIgBIGhGz3_WWg2kXO-0ezn2-fd37U",
   authDomain: "skogbrynets-verkstad.firebaseapp.com",
   projectId: "skogbrynets-verkstad",
@@ -22,7 +32,9 @@ const firebaseConfig = {
   messagingSenderId: "887634919102",
   appId: "1:887634919102:web:09689068c5980d488728ef",
   measurementId: "G-ZVPCD01LNG",
-};
+};*/
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
