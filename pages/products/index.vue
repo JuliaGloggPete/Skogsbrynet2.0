@@ -2,7 +2,7 @@
   <div>
     <h2>Produkter</h2>
 
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <div v-for="product in productList.list" :key="product.id">
         <ProductCard :product="product" :imageUrl="product.imageUrl" />
       </div>

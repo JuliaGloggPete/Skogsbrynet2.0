@@ -3,7 +3,7 @@
     <div class="grid grid-cols-2 gap-10">
       <div class="p-7">
         <img
-          :src="product.imagepath"
+          :src="product.imageUrl"
           alt="product img"
           class="mx-auto my-7 max-w-sm"
         />
@@ -34,7 +34,8 @@
 </template>
 
 <script setup>
-const { product } = defineProps(["product"]);
+
+const { product, imageUrl } = defineProps(['product', 'imageUrl']);
 </script>
 
 <style scoped>
