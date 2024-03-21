@@ -2,14 +2,15 @@
   <div>
     <h2 class="text-center text-4xl">Skogsbrynets Verkstad</h2>
 
-    <div class="">
-      <div class="rounded-full h-48 w-48 overflow-hidden">
+    <div class="sm:grid sm:grid-cols-3 lg:grid-cols-5 my-8">
+      <div class="rounded-full my-4 sm:my-auto mx-auto h-48 w-48 overflow-hidden ">
         <img
           src="@/assets/IMG_8460.jpg"
           alt="Victoria's image"
-          class="object-cover"
+          class="object-cover "
         />
       </div>
+      <div class="col-span-2 lg:col-span-4 my-auto">
       <p>
         Hej! Jag är Victoria, en passionerad naturälskare och
         trädgårdsentusiast. Att odla är min passion, och jag älskar att se hur
@@ -20,6 +21,7 @@
         spinna och skapa med den mjuka ullen. Naturen är mitt lugn och min
         inspiration, och jag strävar alltid efter att leva i harmoni med den
       </p>
+    </div>
     </div>
     <hr class="my-4" />
     <div class="grid grid-cols-3 gap-4">
