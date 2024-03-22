@@ -3,8 +3,8 @@
     <div class="grid grid-cols-2 gap-10">
       <div class="p-7">
         <img
-          :src="product.imageUrl"
-          alt="product img"
+          :src="productImageUrl"
+          alt="Product Image"
           class="mx-auto my-7 max-w-sm"
         />
       </div>
@@ -13,20 +13,20 @@
         <h2 class="font-bold text-4xl my7">{{ product.productTitle }}</h2>
         <p>{{ product.productDescription }}</p>
         <p class="font-bold border-b-2 mb-4 pb-2">
-          <strong>Produktinformation: </strong> {{ product.productInformation }}
+          <strong>Product Information: </strong> {{ product.productInformation }}
         </p>
         <p class="text-xl my-7">
-          <strong>Pris: </strong> {{ product.price }} kr
+          <strong>Price: </strong> {{ product.price }} kr
         </p>
-        <p><strong>Förpackningssstorlek:</strong> {{ product.packaging }}</p>
-        <p>Disponibel in:</p>
-        <div v-for="color in product.colors">
+        <p><strong>Packaging Size:</strong> {{ product.packaging }}</p>
+        <p>Available in:</p>
+        <div v-for="color in product.colors" :key="color.id">
           <p>{{ color.colorName }}</p>
         </div>
 
         <button class="btn flex">
           <i class="material-icons mr-2">add_shopping_cart</i>
-          <span>Lägg till</span>
+          <span>Add to Cart</span>
         </button>
       </div>
     </div>
@@ -34,8 +34,13 @@
 </template>
 
 <script setup>
+import { defineProps } from 'vue';
+import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 
-const { product, imageUrl } = defineProps(['product', 'imageUrl']);
+const { product, productImageUrl } = defineProps(['product', 'productImageUrl']);
+
+
+
 </script>
 
 <style scoped>
