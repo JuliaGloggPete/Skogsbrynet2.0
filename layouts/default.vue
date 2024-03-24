@@ -1,9 +1,18 @@
 <template>
   <div>
     <header class="shadow-sm">
-      <nav class="container mx-auto p-4 flex justify-between">
-        <NuxtLink to="/">Skogsbrynets Verkstad</NuxtLink>
-        <ul class="flex gap-4">
+      <nav class="container mx-auto px-2 flex justify-between">
+        <NuxtLink to="/">
+          <div class="h-48 overflow-hidden">
+          <img
+              src="@/assets/LogoText.png"
+              alt="Skogsbrynets Verkstad"
+              class=" h-56 object-cover "
+            />
+            
+          </div>
+       </NuxtLink>
+        <ul class="flex gap-4 my-auto ">
           <li><NuxtLink to="/">Home</NuxtLink></li>
 
           <li><NuxtLink to="/products">Produkter</NuxtLink></li>
@@ -18,6 +27,9 @@
         </ul>
       </nav>
     </header>
+    <main class="flex-1">
+
+    </main>
 
     <div class="container mx-auto p-4">
       <slot />
@@ -30,6 +42,10 @@
     </footer>
   </div>
 </template>
+
+<script>
+import "@/assets/transparent_logo.png";
+</script>
 <style scoped>
 .router-link-exact-active {
   text-decoration: underline;

@@ -1,15 +1,15 @@
 <template>
   <div class="card">
-    <div class="grid grid-cols-2 gap-10">
+    <div class="grid lg:grid-cols-2 lg:gap-6">
       <div class="p-7">
         <img
           :src="productImageUrl"
           alt="Product Image"
-          class="mx-auto my-7 max-w-sm"
+          class="mx-auto my-4 md:my-7 max-w-md"
         />
       </div>
 
-      <div>
+      <div class="mx-auto mb-4 lg:my-auto">
         <h2 class="font-bold text-4xl my7">{{ product.productTitle }}</h2>
         <p>{{ product.productDescription }}</p>
         <p class="font-bold border-b-2 mb-4 pb-2">

@@ -3,44 +3,49 @@
     <h2 class="text-center text-4xl">Skogsbrynets Verkstad</h2>
 
     <div class="sm:grid sm:grid-cols-3 lg:grid-cols-5 my-8">
-      <div class="rounded-full my-4 sm:my-auto mx-auto h-48 w-48 overflow-hidden ">
+      <div
+        class="rounded-full my-4 sm:my-auto mx-auto h-48 w-48 overflow-hidden"
+      >
         <img
           src="@/assets/IMG_8460.jpg"
           alt="Victoria's image"
-          class="object-cover "
+          class="object-cover"
         />
       </div>
       <div class="col-span-2 lg:col-span-4 my-auto">
-      <p>
-        Hej! Jag är Victoria, en passionerad naturälskare och
-        trädgårdsentusiast. Att odla är min passion, och jag älskar att se hur
-        mina växter växer och blomstrar. Det bästa är när jag kan skapa något
-        användbart av det jag har odlat - jag älskar att göra egna produkter som
-        exempelvis sylt från mina egna bär eller krämer av de örter jag har
-        planterat. Dessutom är jag en ivrig fårullsentusiast och älskar att
-        spinna och skapa med den mjuka ullen. Naturen är mitt lugn och min
-        inspiration, och jag strävar alltid efter att leva i harmoni med den
-      </p>
-    </div>
+        <p>
+          Hej! Jag är Victoria, en passionerad naturälskare och
+          trädgårdsentusiast. Att odla är min passion, och jag älskar att se hur
+          mina växter växer och blomstrar. Det bästa är när jag kan skapa något
+          användbart av det jag har odlat - jag älskar att göra egna produkter
+          som exempelvis sylt från mina egna bär eller krämer av de örter jag
+          har planterat. Dessutom är jag en ivrig fårullsentusiast och älskar
+          att spinna och skapa med den mjuka ullen. Naturen är mitt lugn och min
+          inspiration, och jag strävar alltid efter att leva i harmoni med den
+        </p>
+      </div>
     </div>
     <hr class="my-4" />
-    <div class="grid grid-cols-3 gap-4">
-      <div class="border rounded-md border-[#afc0b4]">
-        <div class="bg-[#afc0b4] text-white p-2 text-center">Events</div>
-        <div class="my-2 max-h-48 overflow-hidden">
-          <img
-            src="@/assets/IMG_8460.jpg"
-            alt="Victoria's image"
-            class="object-cover"
-          />
+    <div class="grid md:grid-cols-3 gap-4">
+      <NuxtLink to="/products">
+        <div class="border rounded-md border-[#afc0b4]">
+          <div class="bg-[#afc0b4] text-white p-2 text-center">Produkter</div>
+          <div class="my-2 max-h-48 overflow-hidden">
+            <img
+              src="@/assets/IMG_8460.jpg"
+              alt="Victoria's image"
+              class="object-cover"
+            />
+          </div>
+          <div class="m-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+            delectus esse nobis! Ipsum consequatur enim, ab aspernatur eaque
+            iure nesciunt, obcaecati exercitationem tempore voluptatem sunt non
+            expedita doloremque eveniet modi? Ab ad odit
+          </div>
         </div>
-        <div class="m-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-          delectus esse nobis! Ipsum consequatur enim, ab aspernatur eaque iure
-          nesciunt, obcaecati exercitationem tempore voluptatem sunt non
-          expedita doloremque eveniet modi? Ab ad odit 
-        </div>
-      </div>
+      </NuxtLink>
+      <NuxtLink to="/events">
       <div class="border rounded-md border-[#afc0b4]">
         <div class="bg-[#afc0b4] text-white p-2 text-center">Events</div>
         <div class="my-2 max-h-48 overflow-hidden">
@@ -56,21 +61,24 @@
           nesciunt, obcaecati exercitationem tempore .
         </div>
       </div>
-      <div class="border rounded-md border-[#afc0b4]">
-        <div class="bg-[#afc0b4] text-white p-2 text-center">Events</div>
-        <div class="my-2 max-h-48 overflow-hidden">
-          <img
-            src="@/assets/IMG_8460.jpg"
-            alt="Victoria's image"
-            class="object-cover"
-          />
+    </NuxtLink>
+      <NuxtLink to="/blogs">
+        <div class="border rounded-md border-[#afc0b4]">
+          <div class="bg-[#afc0b4] text-white p-2 text-center">Blogg</div>
+          <div class="my-2 max-h-48 overflow-hidden">
+            <img
+              src="@/assets/IMG_8460.jpg"
+              alt="Victoria's image"
+              class="object-cover"
+            />
+          </div>
+          <div class="m-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+            delectus esse nobis! Ipsum consequatur enim, ab aspernatur eaque
+            iure nesciunt, obcaecati exercitationem .
+          </div>
         </div>
-        <div class="m-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-          delectus esse nobis! Ipsum consequatur enim, ab aspernatur eaque iure
-          nesciunt, obcaecati exercitationem .
-        </div>
-      </div>
+      </NuxtLink>
     </div>
   </div>
 </template>
