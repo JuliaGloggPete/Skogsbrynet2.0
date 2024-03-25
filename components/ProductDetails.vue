@@ -3,7 +3,14 @@
     <div class="grid lg:grid-cols-2 lg:gap-6">
       <div class="p-7">
         <img
+          v-if="productImageUrl"
           :src="productImageUrl"
+          alt="Product Image"
+          class="mx-auto my-4 md:my-7 max-w-md"
+        />
+        <img
+          v-else
+          src="@/assets/transparent_logo.png"
           alt="Product Image"
           class="mx-auto my-4 md:my-7 max-w-md"
         />
@@ -20,11 +27,6 @@
           <strong>Price: </strong> {{ product.price }} kr
         </p>
         <p><strong>Packaging Size:</strong> {{ product.packaging }}</p>
-        <!--         <p>Available in:</p>
-        <div v-for="color in product.colors" :key="color.id">
-          <p>{{ color.colorName }}</p> 
-        </div>
-       -->
 
         <button
           v-if="!alreadyOrderd"
@@ -36,9 +38,9 @@
         </button>
 
         <div v-else>
-          <button class="btn my-4 mr-3">-</button>
+          <button class="btn my-4 mr-3" @click="">-</button>
           <span> {{ orderItemCount }}</span>
-          <button class="btn my-4 ml-3">+</button>
+          <button class="btn my-4 ml-3" @click="increaseItem(product.id)">+</button>
         </div>
         <p v-for="(item, index) in orderStore.$state.orderedItems" :key="index">
           {{ item.productTitle }},&nbsp;
@@ -50,8 +52,11 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-
 import { useOrderStore } from "~/stores/orderStore";
+import { useOverallCount } from "~/stores/overallCount";
+
+const countStore = useOverallCount();
+
 const { product, productImageUrl } = defineProps([
   "product",
   "productImageUrl",
@@ -60,24 +65,25 @@ const { product, productImageUrl } = defineProps([
 const orderStore = useOrderStore();
 
 let alreadyOrderd = false; // förbättra kolla om product finns i orderstore
-let orderItemCount = 0
-const addToCart = (id, productTitle, price) => {
-  //göra en if-sats här om produkten redan finns så ändras knapperna och
-  // count
+let orderItemCount = 0;
 
-  if (!alreadyOrderd) {
+const increaseItem = (productId) => {
+  orderStore.increaseItemCount(productId);
+  countStore.increaseCount();
+}
+
+
+const addToCart = (id, productTitle, price) => {
+
     orderItemCount = 1;
+    countStore.increaseCount();
 
     const productToAdd = { id, productTitle, price, orderItemCount };
 
     orderStore.addItem(productToAdd);
     alreadyOrderd = true;
     console.log(orderStore.$state);
-
-  } else {
-    // ändra bara count
-    // increase() & decrease()
-  }
+  
 };
 </script>
 

@@ -1,35 +1,18 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
-
-export const useOverallCount = defineStore('overallCountStore', {
-
+export const useOverallCount = defineStore("overallCountStore", {
   state: () => ({
-
-   count = 0
-   
+    count: 0,
   }),
-  getters:{
-
-    
-
-
-
-  },
-  actions:{
-
-   increaseCount(){
-
+  getters: {},
+  actions: {
+    increaseCount() {
+      this.count++;
     },
-
-    decreaseCount(){
-
-    }
-
-
-
-
-  }
-
-
-
-})
+    decreaseCount() {
+      if (this.count > 0) {
+        this.count--;
+      }
+    },
+  },
+});
