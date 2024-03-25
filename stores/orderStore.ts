@@ -1,14 +1,20 @@
 import { defineStore } from 'pinia'
 import type { IOrderItem } from "~/types";
 
-export const useStore = defineStore('orderStore', {
+export const useOrderStore = defineStore('orderStore', {
 
   state: () => ({
 
     orderedItems : [] as IOrderItem[]
    
   }),
-  getters:{},
+  getters:{
+
+    
+
+
+
+  },
   actions:{
 
     addItem(item: IOrderItem){

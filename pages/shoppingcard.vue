@@ -1,14 +1,15 @@
 <template>
   <div>
-    <h2>Shoppingcard</h2>
 
   </div>
 </template>
 
-<script setup>
-
+<script>
+  export default {
+    
+  }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>
