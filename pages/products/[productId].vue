@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ProductDetails :product="productData" :productImageUrl="productImageUrl" />
+    <ProductDetails :productId="productId" :product="productData" :productImageUrl="productImageUrl" />
   </div>
 </template>
 

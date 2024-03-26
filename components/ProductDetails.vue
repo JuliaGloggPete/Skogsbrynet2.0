@@ -29,62 +29,83 @@
         <p><strong>Packaging Size:</strong> {{ product.packaging }}</p>
 
         <button
-          v-if="!alreadyOrderd"
+          v-if="!alreadyOrdered"
           class="btn flex mt-5"
-          @click="addToCart(product.id, product.productTitle, product.price)"
+          @click="addToCart(productId, product.productTitle, product.price)"
         >
           <i class="material-icons mr-2">add_shopping_cart</i>
           <span>Add to Cart</span>
         </button>
+        {{ alreadyOrdered }}
 
-        <div v-else>
-          <button class="btn my-4 mr-3" @click="">-</button>
-          <span> {{ orderItemCount }}</span>
-          <button class="btn my-4 ml-3" @click="increaseItem(product.id)">+</button>
+        <div v-if="alreadyOrdered">
+          <button class="btn my-4 mr-3" @click="decreaseItem">-</button>
+          <span
+            v-for="(item, index) in orderStore.$state.orderedItems"
+            :key="index"
+          >
+            <span v-if="item.productId === productId">{{
+              item.orderItemCount
+            }}</span>
+          </span>
+          <button class="btn my-4 ml-3" @click="increaseItem">+</button>
         </div>
-        <p v-for="(item, index) in orderStore.$state.orderedItems" :key="index">
-          {{ item.productTitle }},&nbsp;
-        </p>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { defineProps } from "vue";
+<script setup>
 import { useOrderStore } from "~/stores/orderStore";
 import { useOverallCount } from "~/stores/overallCount";
 
+import { ref } from "vue";
+
+let alreadyOrdered = ref(false);
+
 const countStore = useOverallCount();
 
-const { product, productImageUrl } = defineProps([
+const { product, productImageUrl, productId } = defineProps([
   "product",
   "productImageUrl",
+  "productId",
 ]);
 
 const orderStore = useOrderStore();
 
-let alreadyOrderd = false; // förbättra kolla om product finns i orderstore
+console.log(orderStore.getProductById(productId));
+console.log(alreadyOrdered);
+// förbättra kolla om product finns i orderstore
 let orderItemCount = 0;
 
-const increaseItem = (productId) => {
-  orderStore.increaseItemCount(productId);
+const increaseItem = () => {
+  orderStore.updateItemCount(productId);
   countStore.increaseCount();
-}
-
-
-const addToCart = (id, productTitle, price) => {
-
-    orderItemCount = 1;
-    countStore.increaseCount();
-
-    const productToAdd = { id, productTitle, price, orderItemCount };
-
-    orderStore.addItem(productToAdd);
-    alreadyOrderd = true;
-    console.log(orderStore.$state);
-  
 };
+
+const decreaseItem = () => {
+  orderStore.decreaseItemCount(productId);
+  countStore.decreaseCount();
+};
+
+const getOrderItemCount = () => {
+  const item = orderStore.getProductById(productId);
+  return item ? item.orderItemCount : 0;
+};
+
+const addToCart = (productId, productTitle, price) => {
+  alreadyOrdered.value = true;
+
+  const productToAdd = { productId, productTitle, price, orderItemCount: 1 };
+  countStore.increaseCount();
+  orderStore.addItem(productToAdd);
+
+  console.log(orderStore.$state);
+};
+
+/*const orderedItems = orderStore.$state.orderedItems.filter(
+  (item) => item.productId === productId
+);*/
 </script>
 
 <style scoped>

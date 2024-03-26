@@ -1,5 +1,5 @@
 export interface IOrderItem {
-  productID: string;
+  productId: string;
   productName: string;
   price: string;
   orderItemCount: number;

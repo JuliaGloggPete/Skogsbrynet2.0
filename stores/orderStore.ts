@@ -5,22 +5,41 @@ export const useOrderStore = defineStore("orderStore", {
   state: () => ({
     orderedItems: [] as IOrderItem[],
   }),
-  getters: {},
+  getters: {
+    // Getter som returnerar en funktion
+    getProductById: (state) => (productId:string) => {
+      return state.orderedItems.find(item => item.productId === productId);
+    }
+  },
   actions: {
     addItem(item: IOrderItem) {
       this.orderedItems.push(item);
     },
 
     deleteItem(itemToDelete: IOrderItem) {
-      this.orderedItems = this.orderedItems.filter((s) => {
-        return s.productName !== itemToDelete.productName;
-      });
+      this.orderedItems = this.orderedItems.filter(
+        (s) => s.productId !== itemToDelete.productId
+      );
     },
-    increaseItemCount(id: string) {
-      const item = this.orderedItems.find((i) => i.productID === id);
-      if (item) {
-        item.orderItemCount++;
+
+    updateItemCount(productId:string) {
+      const itemIndex = this.orderedItems.findIndex(
+        (item) => item.productId === productId
+      );
+      if (itemIndex !== -1) {
+        this.orderedItems[itemIndex].orderItemCount++;
       }
     },
+
+    decreaseItemCount(productId:string) {
+      const itemIndex = this.orderedItems.findIndex(
+        (item) => item.productId === productId
+      );
+      if (itemIndex !== -1 && this.orderedItems[itemIndex].orderItemCount > 0) {
+        this.orderedItems[itemIndex].orderItemCount--;
+      }
+    }
+
+
   },
 });
