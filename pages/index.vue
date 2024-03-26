@@ -2,7 +2,10 @@
   <div>
     <h2 class="text-center text-4xl">Skogsbrynets Verkstad</h2>
 
+    
+
     <div class="sm:grid sm:grid-cols-3 lg:grid-cols-5 my-8">
+
       <div
         class="rounded-full my-4 sm:my-auto mx-auto h-48 w-48 overflow-hidden"
       >
@@ -27,14 +30,15 @@
     </div>
     <hr class="my-4" />
     <div class="grid md:grid-cols-3 gap-4">
+      
       <NuxtLink to="/products">
-        <div class="border rounded-md border-[#afc0b4]">
+        <div class="border rounded-md border-[#afc0b4] flex-grow">
           <div class="bg-[#afc0b4] text-white p-2 text-center">Produkter</div>
-          <div class="my-2 max-h-48 overflow-hidden">
+          <div class="overflow-hidden">
             <img
-              src="@/assets/IMG_8460.jpg"
+              src="@/assets/product_default.jpg"
               alt="Victoria's image"
-              class="object-cover"
+              class="object-cover aspect-video"
             />
           </div>
           <div class="m-2">
@@ -46,13 +50,13 @@
         </div>
       </NuxtLink>
       <NuxtLink to="/events">
-      <div class="border rounded-md border-[#afc0b4]">
+      <div class="border rounded-md border-[#afc0b4] h-full">
         <div class="bg-[#afc0b4] text-white p-2 text-center">Events</div>
-        <div class="my-2 max-h-48 overflow-hidden">
+        <div class="overflow-hidden">
           <img
-            src="@/assets/IMG_8460.jpg"
+            src="@/assets/event_default.jpg"
             alt="Victoria's image"
-            class="object-cover"
+            class="object-cover aspect-video"
           />
         </div>
         <div class="m-2">
@@ -63,13 +67,13 @@
       </div>
     </NuxtLink>
       <NuxtLink to="/blogs">
-        <div class="border rounded-md border-[#afc0b4]">
+        <div class="border rounded-md border-[#afc0b4] h-full">
           <div class="bg-[#afc0b4] text-white p-2 text-center">Blogg</div>
-          <div class="my-2 max-h-48 overflow-hidden">
+          <div class="overflow-hidden ">
             <img
-              src="@/assets/IMG_8460.jpg"
+              src="@/assets/blog_default.jpg"
               alt="Victoria's image"
-              class="object-cover"
+              class="object-cover aspect-video"
             />
           </div>
           <div class="m-2">

@@ -1,9 +1,6 @@
 export interface IOrderItem {
-  productID: string;
+  productId: string;
   productName: string;
-  color: string;
-  size: string;
   price: string;
-  count: number;
-
+  orderItemCount: number;
 }
