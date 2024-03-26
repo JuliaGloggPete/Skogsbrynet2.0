@@ -64,6 +64,14 @@ const overallSum = computed(() => {
   });
   return sum;
 });
+
+
+//TODO läsa ner o kolla vilken ordernummer det verkligen ska vara
+
+//TODO kundDetailjer
+const getRandomOrderNumber = () => {
+  return Math.floor(Math.random() * 1000) + 1; 
+};
 const placeOrder = async () => {
   const orderItems = orderStore.$state.orderedItems.map((item) => ({
     itemName: item.productTitle,
@@ -72,9 +80,11 @@ const placeOrder = async () => {
   }));
 
   const newOrder = {
+    orderDatum: new Date().toISOString(),
+    orderNumber: getRandomOrderNumber(),
+
     orderItems: orderItems,
-    totalSum: overallSum.value, // Assuming overallSum is a computed property
-    // Add other details of the order if needed
+    totalSum: overallSum.value, 
   };
 
   try {
