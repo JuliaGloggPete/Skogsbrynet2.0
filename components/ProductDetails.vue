@@ -36,7 +36,6 @@
           <i class="material-icons mr-2">add_shopping_cart</i>
           <span>Add to Cart</span>
         </button>
-        {{ alreadyOrdered }}
 
         <div v-if="alreadyOrdered">
           <button class="btn my-4 mr-3" @click="decreaseItem">-</button>
