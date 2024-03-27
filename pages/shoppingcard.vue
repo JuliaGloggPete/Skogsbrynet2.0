@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div v-if="!succsessfullyOrdered" class="card">
     <p class="text-3xl text-center mt-4">Varukorg</p>
     <div class="px-8 my-8">
       <!-- Header row -->
@@ -10,52 +10,59 @@
         <div>Rabatt</div>
         <div>Total</div>
       </div>
-      <hr class="mb-4">
-      
+      <hr class="mb-4" />
+
       <!-- Items row -->
-      <div class="grid grid-cols-5" v-for="(item, index) in orderStore.$state.orderedItems" :key="index">
+      <div
+        class="grid grid-cols-5"
+        v-for="(item, index) in orderStore.$state.orderedItems"
+        :key="index"
+      >
         <div>{{ item.orderItemCount }}</div>
         <div>{{ item.productTitle }}</div>
         <div>{{ item.price }} kr</div>
-        <div></div> <!-- Placeholder for Rabatt -->
-        <div>{{ item.price * item.orderItemCount }} kr</div> <!-- Placeholder for Total -->
+        <div></div>
+        <!-- Placeholder for Rabatt -->
+        <div>{{ item.price * item.orderItemCount }} kr</div>
+        <!-- Placeholder for Total -->
       </div>
-   
-  <hr class="my-4" />
-  <div class="grid grid-cols-5 mb-4 ">
-    <div class="col-span-3"></div>
 
-   <p class="font-bold">Summa</p> 
-   <p>{{ overallSum }} kr
-</p>
+      <hr class="my-4" />
+      <div class="grid grid-cols-5 mb-4">
+        <div class="col-span-3"></div>
 
-</div>
-</div>
-<div class="text-center -mb-5">
+        <p class="font-bold">Summa</p>
+        <p>{{ overallSum }} kr</p>
+      </div>
+    </div>
+    <div class="text-center -mb-5">
       <button class="btn" @click="placeOrder">Beställ</button>
     </div>
-</div>
+  </div>
+
+  <div v-if="succsessfullyOrdered" class="card text-center">
+    <p class="font-bold text-2xl my-6">Tack för din order</p>
+
+    <button class="btn">Home</button>
+  </div>
 </template>
 
 <script setup>
 import { useOrderStore } from "~/stores/orderStore";
 import { useOverallCount } from "~/stores/overallCount";
-import { initializeApp } from "firebase/app";
+
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
-
+let succsessfullyOrdered = ref(false);
 
 const db = getFirestore();
 
 const countStore = useOverallCount();
 const orderStore = useOrderStore();
 
-
-
 const calculateTotal = (item) => {
   return item.price * item.orderItemCount;
 };
-
 
 const overallSum = computed(() => {
   let sum = 0;
@@ -65,12 +72,11 @@ const overallSum = computed(() => {
   return sum;
 });
 
-
 //TODO läsa ner o kolla vilken ordernummer det verkligen ska vara
 
 //TODO kundDetailjer
 const getRandomOrderNumber = () => {
-  return Math.floor(Math.random() * 1000) + 1; 
+  return Math.floor(Math.random() * 1000) + 1;
 };
 const placeOrder = async () => {
   const orderItems = orderStore.$state.orderedItems.map((item) => ({
@@ -84,25 +90,23 @@ const placeOrder = async () => {
     orderNumber: getRandomOrderNumber(),
 
     orderItems: orderItems,
-    totalSum: overallSum.value, 
+    totalSum: overallSum.value,
   };
 
   try {
     await addDoc(collection(db, "Orders"), newOrder);
     console.log("Order placed successfully!");
+    succsessfullyOrdered.value = true;
+    /// TODO orderbekräftelse - sen tömma orderStore
+
+
+
   } catch (error) {
     console.error("Error placing order:", error);
   }
 };
 
-
 //db.collection("Order").add(newOrder)
-
-
-
-
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
