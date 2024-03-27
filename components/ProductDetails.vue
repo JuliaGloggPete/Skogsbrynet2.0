@@ -70,9 +70,8 @@ const { product, productImageUrl, productId } = defineProps([
   "productId",
 ]);
 
-console.log(orderStore.getProductById(productId));
-console.log(alreadyOrdered);
-// TODO - förbättra kolla om product finns i orderstore
+const item = orderStore.getProductById(productId);
+alreadyOrdered.value = !!item;
 
 const increaseItem = () => {
   orderStore.updateItemCount(productId);
@@ -84,7 +83,7 @@ const decreaseItem = () => {
   const item = orderStore.getProductById(productId);
   if (item.orderItemCount === 0) {
     orderStore.deleteItem(item);
-    alreadyOrdered = false;
+    alreadyOrdered.value = false;
   }
 
   countStore.decreaseCount();
