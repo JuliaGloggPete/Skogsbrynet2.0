@@ -60,9 +60,9 @@ import { useOverallCount } from "~/stores/overallCount";
 
 import { ref } from "vue";
 
-let alreadyOrdered = ref(false);
-
+const orderStore = useOrderStore();
 const countStore = useOverallCount();
+let alreadyOrdered = ref(false);
 
 const { product, productImageUrl, productId } = defineProps([
   "product",
@@ -70,12 +70,9 @@ const { product, productImageUrl, productId } = defineProps([
   "productId",
 ]);
 
-const orderStore = useOrderStore();
-
 console.log(orderStore.getProductById(productId));
 console.log(alreadyOrdered);
-// förbättra kolla om product finns i orderstore
-let orderItemCount = 0;
+// TODO - förbättra kolla om product finns i orderstore
 
 const increaseItem = () => {
   orderStore.updateItemCount(productId);
@@ -84,12 +81,13 @@ const increaseItem = () => {
 
 const decreaseItem = () => {
   orderStore.decreaseItemCount(productId);
-  countStore.decreaseCount();
-};
-
-const getOrderItemCount = () => {
   const item = orderStore.getProductById(productId);
-  return item ? item.orderItemCount : 0;
+  if (item.orderItemCount === 0) {
+    orderStore.deleteItem(item);
+    alreadyOrdered = false;
+  }
+
+  countStore.decreaseCount();
 };
 
 const addToCart = (productId, productTitle, price) => {
@@ -101,10 +99,6 @@ const addToCart = (productId, productTitle, price) => {
 
   console.log(orderStore.$state);
 };
-
-/*const orderedItems = orderStore.$state.orderedItems.filter(
-  (item) => item.productId === productId
-);*/
 </script>
 
 <style scoped>

@@ -38,6 +38,7 @@ export const useOrderStore = defineStore("orderStore", {
       if (itemIndex !== -1 && this.orderedItems[itemIndex].orderItemCount > 0) {
         this.orderedItems[itemIndex].orderItemCount--;
       }
+      
     }
 
 
